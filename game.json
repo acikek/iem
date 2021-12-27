@@ -1,0 +1,35 @@
+{
+  "DefaultEmotions": [
+    "Happy",
+    "Sad"
+  ],
+  "Emotions": {
+    "Happy": {
+      "Description": "Happiness description",
+      "Category": "Mood",
+      "Base": 1,
+      "Upgrades": {
+        "Default": {
+          "Description": "",
+          "Boost": {
+            "Euphoric": "1.5 + 0.1 * level"
+          }
+        }
+      }
+    },
+    "Sad": {
+      "Description": "Sadness description",
+      "Category": "Mood",
+      "Base": 1,
+      "Upgrades": {
+        "Easygoing": {
+          "Description": "Easygoing description",
+          "Boost": {
+            "Happy": "1.25",
+            "Sad": "0.75"
+          }
+        }
+      }
+    }
+  }
+}
