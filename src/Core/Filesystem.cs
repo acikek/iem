@@ -1,6 +1,8 @@
 using System.Text.Json;
 using Data;
 
+namespace Core;
+
 class Filesystem {
   public static string GameDirectory = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/iem_game";
   public static bool PatchDirectory() {

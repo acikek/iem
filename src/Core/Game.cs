@@ -1,6 +1,7 @@
+using Data;
 using Emotions;
 
-namespace Data;
+namespace Core;
 
 /// <summary>The entire game including all of its data.</summary>
 class Game {
