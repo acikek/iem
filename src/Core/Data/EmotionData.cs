@@ -8,10 +8,10 @@ class EmotionData
 
   public string[] Upgrades;
 
-  public EmotionData(int level, string[] upgrades) 
+  public EmotionData() 
   {
-    this.Level = level;
-    this.Upgrades = upgrades;
+    this.Level = 1;
+    this.Upgrades = Array.Empty<string>();
   }
 
   public double GetBoost(string name, Upgrade[] upgrades) 
@@ -21,7 +21,4 @@ class EmotionData
       .Select(d => d[name])
       .DefaultIfEmpty(1.0)
       .Aggregate((x, y) => x * y);
-
-  public static EmotionData Default()
-    => new EmotionData(1, Array.Empty<string>());
 }

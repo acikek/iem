@@ -6,7 +6,7 @@ class PlayerData
   public double LEXP;
 
   public void AddEmotion(string name)
-    => this.Emotions[name] = EmotionData.Default();
+    => this.Emotions[name] = new EmotionData();
   
   public void RemoveEmotion(string name)
     => this.Emotions.Remove(name);

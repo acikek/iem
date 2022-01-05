@@ -1,7 +1,7 @@
 ﻿using Core;
 using Gui;
 
-var game = Filesystem.LoadGame(true);
+var game = Filesystem.LoadGame();
 
 if (game is null)
   Environment.Exit(1);

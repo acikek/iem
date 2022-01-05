@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text.Json;
 using Data;
 using YamlDotNet.Serialization;
@@ -7,10 +8,10 @@ namespace Core;
 class Filesystem 
 {
   public static string GameDirectory = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/iem_game";
-  public static bool PatchDirectory(bool force) {
+  public static bool PatchDirectory() {
     try 
     {
-      if (force || !Directory.Exists(GameDirectory)) 
+      if (!Directory.Exists(GameDirectory)) 
       {
         // Create base directory
         Directory.CreateDirectory(GameDirectory);
@@ -34,14 +35,14 @@ class Filesystem
     => new Deserializer().Deserialize<GameData>(File.ReadAllText(GetPath("game")));
 
   public static PlayerData? LoadPlayerData(GameData? data, bool patch) 
-    => patch ? JsonSerializer.Deserialize<PlayerData>(File.ReadAllText(GetPath("save"))) : 
+    => patch ? new Deserializer().Deserialize<PlayerData>(File.ReadAllText(GetPath("save"))) : 
       (data is null ? null : data.DefaultPlayerData());
 
-  public static Game? LoadGame(bool force) 
+  public static Game? LoadGame() 
   {
     try 
     {
-      bool patch = PatchDirectory(force);
+      bool patch = PatchDirectory();
       var gameData = LoadGameData();
       var playerData = LoadPlayerData(gameData, patch);
       return Game.Create(gameData, playerData);

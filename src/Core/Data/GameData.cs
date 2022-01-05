@@ -1,4 +1,5 @@
 using Emotions;
+using Terminal.Gui;
 
 namespace Data;
 
@@ -13,7 +14,20 @@ class GameData
 
   public PlayerData DefaultPlayerData()
     => new PlayerData {
-      Emotions = this.DefaultEmotions.ToDictionary(key => key, value => EmotionData.Default()), 
+      Emotions = this.DefaultEmotions.ToDictionary(key => key, value => new EmotionData()), 
       LEXP = 0.0
     };
+
+  public Window GetEmotionBaseWindow(string name, View other)
+    => new Window(name)
+    {
+      X = Pos.Right(other),
+      Y = 1,
+      Width = Dim.Fill(),
+      Height = Dim.Fill()
+    };
+
+  public Window GetEmotionLockedWindow(string name, View other) {
+    return GetEmotionBaseWindow(name, other);
+  }
 }
