@@ -2,20 +2,15 @@ using CodingSeb.ExpressionEvaluator;
 
 namespace Emotions;
 
-class Upgrade {
+class Upgrade
+{
   public static ExpressionEvaluator eval = new ExpressionEvaluator();
-  public string Description 
-  { get; set; }
+  public string Description;
+  public int Cost;
+  public Dictionary<string, string> Boost;
 
-  public Dictionary<string, string> Boost
-  { get; set; }
-
-  public Upgrade(string description, Dictionary<string, string> boost) {
-    this.Description = description;
-    this.Boost = boost;
-  }
-
-  public Dictionary<string, double> EvalBoost(int level) {
+  public Dictionary<string, double> EvalBoost(int level) 
+  {
     eval.Variables = new Dictionary<string, object>() {
       { "level", level }
     };

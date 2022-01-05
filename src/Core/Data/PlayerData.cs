@@ -1,19 +1,16 @@
 namespace Data;
 
-class PlayerData {
-  public Dictionary<string, EmotionData> Emotions
-  { get; set; }
-
-  public PlayerData(Dictionary<string, EmotionData> emotions) {
-    this.Emotions = emotions;
-  }
-
-  public static PlayerData? Default(GameData? data)
-    => data is null ? null : new PlayerData(data.DefaultEmotions.ToDictionary(key => key, value => EmotionData.Default()));
+class PlayerData
+{
+  public Dictionary<string, EmotionData> Emotions;
+  public double LEXP;
 
   public void AddEmotion(string name)
-    => this.Emotions[name] = new EmotionData(1, new string[] { });
+    => this.Emotions[name] = EmotionData.Default();
   
   public void RemoveEmotion(string name)
     => this.Emotions.Remove(name);
+
+  public void LevelEmotion(string name, int level)
+    => this.Emotions[name].Level += level;
 }

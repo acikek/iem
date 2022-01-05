@@ -2,14 +2,14 @@ using Emotions;
 
 namespace Data;
 
-class EmotionData {
-  public int Level
-  { get; set; }
+class EmotionData
+{
+  public int Level;
 
-  public string[] Upgrades
-  { get; set; }
+  public string[] Upgrades;
 
-  public EmotionData(int level, string[] upgrades) {
+  public EmotionData(int level, string[] upgrades) 
+  {
     this.Level = level;
     this.Upgrades = upgrades;
   }
@@ -23,5 +23,5 @@ class EmotionData {
       .Aggregate((x, y) => x * y);
 
   public static EmotionData Default()
-    => new EmotionData(1, new string[] { });
+    => new EmotionData(1, Array.Empty<string>());
 }

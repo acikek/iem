@@ -1,0 +1,27 @@
+DefaultEmotions:
+- Happy
+- Sad
+Emotions:
+  Happy:
+    Description: Happiness description
+    Category: Mood
+    Base: 1
+    Cost: 0
+    Upgrades:
+      Default:
+        Description:
+        Cost: 0
+        Boost:
+          Euphoric: 1.5 + 0.1 * level
+  Sad:
+    Description: Sadness description
+    Category: Mood
+    Base: 1
+    Cost: 0
+    Upgrades:
+      Easygoing:
+        Description: Easygoing description
+        Cost: 250
+        Boost:
+          Happy: 1.25
+          Sad: 1.25
