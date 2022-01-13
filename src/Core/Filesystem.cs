@@ -19,6 +19,7 @@ class Filesystem
         File.Copy("game.yml", GetPath("game"), true);
         return false;
       }
+      File.Copy("game.yml", GetPath("game"), true);
     } 
     catch (Exception e) 
     {

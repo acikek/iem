@@ -1,4 +1,5 @@
 using Emotions;
+using Gui;
 using Terminal.Gui;
 
 namespace Data;
@@ -18,16 +19,16 @@ class GameData
       LEXP = 0.0
     };
 
+  /// <summary>Generates a default window for emotion windows to build off of.</summary>
+  /// <param name="name">The name of the emotion.</param>
+  /// <param name="other">The left-hand view to align this window with.</param>
   public Window GetEmotionBaseWindow(string name, View other)
     => new Window(name)
     {
       X = Pos.Right(other),
       Y = 1,
       Width = Dim.Fill(),
-      Height = Dim.Fill()
+      Height = Dim.Fill(),
+      ColorScheme = Display.Colors
     };
-
-  public Window GetEmotionLockedWindow(string name, View other) {
-    return GetEmotionBaseWindow(name, other);
-  }
 }

@@ -1,11 +1,16 @@
 using Data;
 using Emotions;
+using Terminal.Gui;
 
 namespace Core;
 
 /// <summary>The entire game including all of its data.</summary>
 class Game 
 {
+  public const string Currency = "LEXP";
+  public static string GetCost(double cost)
+    => $"{cost} {Currency}";
+
   public GameData Data;
 
   /// <summary>The game's player data.</summary>
@@ -68,5 +73,31 @@ class Game
     double result = this.Initialized ? this.GetTotalCacheLPS() : this.GetTotalLPS();
     this.Player.LEXP += result;
     return result;
+  }
+
+  public Button GetBuyButton(Pos x, Pos y)
+    => new Button("Buy", false) { X = x, Y = y };
+
+  /// <summary>Queries the user to buy an item if they have enough LEXP.</summary>
+  /// <param name="win">The window to add a cost label to.</param>
+  /// <param name="button">The button that hooks to this query.</param>
+  /// <param name="title">The title of the confirmation window.</param>
+  /// <param name="desc">The description/details of the confirmation window.</param>
+  /// <param name="cost">The cost of the item to buy.</param>
+  /// <see cref="GetBuyButton"/>
+  /// <returns></returns>
+  public bool BuyQuery(Window win, Button button, string title, string desc, double cost)
+  {
+    if (this.Player.LEXP < cost) 
+    {
+      win.Add(new Label($"Not enough {Currency}!")
+      {
+        X = Pos.Right(button) + 1,
+        Y = 1
+      });
+      return false;
+    }
+
+    return MessageBox.Query($"Buy {title}", desc, "No", "Yes") == 1;
   }
 }

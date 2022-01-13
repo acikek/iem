@@ -25,3 +25,14 @@ Emotions:
         Boost:
           Happy: 1.25
           Sad: 1.25
+  Euphoric:
+    Description: Euphoric description
+    Category: Mood
+    Base: 10
+    Cost: 15000
+    Upgrades:
+      Default:
+        Description:
+        Cost: 0
+        Boost:
+          Sad: 1.1 * level
