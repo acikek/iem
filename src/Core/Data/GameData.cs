@@ -22,8 +22,9 @@ class GameData
   /// <summary>Generates a default window for emotion windows to build off of.</summary>
   /// <param name="name">The name of the emotion.</param>
   /// <param name="other">The left-hand view to align this window with.</param>
-  public Window GetEmotionBaseWindow(string name, View other)
-    => new Window(name)
+  public (Window, View) GetEmotionBaseWindow(string name, View other)
+  {
+    var win = new Window(name)
     {
       X = Pos.Right(other),
       Y = 1,
@@ -31,4 +32,15 @@ class GameData
       Height = Dim.Fill(),
       ColorScheme = Display.Colors
     };
+
+    var desc = new Label(this.Emotions[name].Description)
+    {
+      X = Pos.Center(),
+      Y = 0
+    };
+
+    win.Add(desc);
+
+    return (win, desc);
+  }
 }

@@ -156,16 +156,16 @@ class Display
   /// <param name="other">The left-hand view to align this window with.</param>
   public Window GetEmotionLockedWindow(string name, View other) 
   {
-    var win = this.Core.Data.GetEmotionBaseWindow(name, other);
+    var (win, desc) = this.Core.Data.GetEmotionBaseWindow(name, other);
     var emotion = this.Core.Data.Emotions[name];
 
     var cost = new Label($"Cost: {Game.GetCost(emotion.Cost)}")
     {
       X = 1,
-      Y = 1
+      Y = Pos.Bottom(desc) + 1
     };
 
-    var buy = this.Core.GetBuyButton(Pos.Right(cost) + 1, 1);
+    var buy = this.Core.GetBuyButton(Pos.Right(cost) + 1, Pos.Bottom(desc) + 1);
 
     buy.Clicked += () =>
     {
@@ -182,7 +182,9 @@ class Display
 
   public Window GetEmotionWindow(string name, View other)
   {
-    return this.Core.Data.GetEmotionBaseWindow(name, other);
+    var (win, desc) = this.Core.Data.GetEmotionBaseWindow(name, other);
+
+    return win;
   }
 
   public void ReplaceEmotionWindow(string name)
